@@ -18,7 +18,7 @@ Once activated, EDD Auto Register will create a WordPress user account for your 
 
 The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials. The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
 
-There are filters available to disable the email, modify the email subject line, email body, error messages, default user level etc. More on that soon.
+There are filters available for developer's to disable the email, modify the email subject line, email body, error messages, default user level etc. See the FAQ tab.
 
 **More add-ons for Easy Digital Downloads**
 
@@ -54,21 +54,21 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 
 There are filters available to modify the behaviour of the plugin, see the list below:
 
-// default role when customer is registered
-edd_auto_register_role
+Default role when customer is registered
+1. edd_auto_register_role
 
-// Email filters
-edd_auto_register_email_subject
-edd_auto_register_headers
-edd_auto_register_send_email
-edd_auto_register_email_body
+Email filters
+1. edd_auto_register_email_subject
+2. edd_auto_register_headers
+3. edd_auto_register_send_email
+4. edd_auto_register_email_body
 
-// Error message filters
-edd_auto_register_error_email_exists
-edd_auto_register_error_must_login
+Error message filters
+1. edd_auto_register_error_email_exists
+2. edd_auto_register_error_must_login
 
-// login form
-edd_auto_register_login_form
+Login form
+1. edd_auto_register_login_form
 
 = Can you provide a filter example of how to change the email's subject? =
 
@@ -87,6 +87,8 @@ Add the following to your child theme's functions.php
 
 = Can you provide a filter example of how to change the email's body? =
 
+Add the following to your child theme's functions.php
+
 	function my_child_theme_edd_auto_register_email_body( $default_email_body, $first_name, $username, $password ) {
 
 		// Modify accordingly
@@ -102,6 +104,16 @@ Add the following to your child theme's functions.php
 	}
 	add_filter( 'edd_auto_register_email_body', 'my_child_theme_edd_auto_register_email_body', 10, 4 );
 
+= How can I disable the email from sending to the customer? =
+
+There may be an instance where you do not want the customer to be sent an email. Add the following to your child theme's functions.php
+
+    function my_child_theme_edd_auto_register_send_email() {
+
+	    return false;
+
+    }
+    add_filter( 'edd_auto_register_send_email', 'my_child_theme_edd_auto_register_send_email' );
 
 == Screenshots ==
 

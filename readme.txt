@@ -16,7 +16,7 @@ This plugin requires [Easy Digital Downloads](http://wordpress.org/extend/plugin
 
 Once activated, EDD Auto Register will create a WordPress user account for your customer at checkout, without the need for the customer to enter any additional information. This eliminates the need for the default EDD registration form, and drastically reduces the time it takes your customers to complete their purchase.
 
-The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials. The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
+The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials (uses the same email template as the purchase confirmation). The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
 
 There are filters available for developer's to disable the email, modify the email subject line, email body, error messages, default user level etc. See the FAQ tab.
 
@@ -54,20 +54,13 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 
 There are filters available to modify the behaviour of the plugin, see the list below:
 
-Default role when customer is registered
 1. edd_auto_register_role
-
-Email filters
 1. edd_auto_register_email_subject
-2. edd_auto_register_headers
-3. edd_auto_register_send_email
-4. edd_auto_register_email_body
-
-Error message filters
+1. edd_auto_register_headers
+1. edd_auto_register_send_email
+1. edd_auto_register_email_body
 1. edd_auto_register_error_email_exists
-2. edd_auto_register_error_must_login
-
-Login form
+1. edd_auto_register_error_must_login
 1. edd_auto_register_login_form
 
 = Can you provide a filter example of how to change the email's subject? =
@@ -114,12 +107,6 @@ There may be an instance where you do not want the customer to be sent an email.
 
     }
     add_filter( 'edd_auto_register_send_email', 'my_child_theme_edd_auto_register_send_email' );
-
-== Screenshots ==
-
-1. Coming soon
-
-
 
 == Changelog ==
 

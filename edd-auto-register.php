@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Auto Register
 Plugin URI: http://sumobi.com/shop/edd-auto-register/
 Description: Automatically creates a WP user account at checkout, based on customer's email address.
-Version: 1.0
+Version: 1.0.1
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
 License: GPL-2.0+
@@ -240,7 +240,7 @@ if ( ! class_exists( 'EDD_Auto_Register' ) ) {
 
 			// check to see if the username exists already and an email hasn't already been registered against username
 			if ( $user_id || email_exists( $valid_data['guest_user_data']['user_email'] ) ) {
-				edd_set_error( 'edd_auto_register_error_email_exists', apply_filters( 'edd_auto_register_error_message', __( 'Email Address already in use', 'edd-auto-register' ) ) );
+				edd_set_error( 'edd_auto_register_error_email_exists', apply_filters( 'edd_auto_register_error_email_exists', __( 'Email Address already in use', 'edd-auto-register' ) ) );
 			}
 			else {
 				edd_unset_error( 'edd_auto_register_error_email_exists' );
@@ -261,7 +261,7 @@ if ( ! class_exists( 'EDD_Auto_Register' ) ) {
 				return;
 
 			if ( edd_no_guest_checkout() && !isset( $edd_options['show_register_form'] ) ) {
-				edd_set_error( 'edd_auto_register_error_must_login', apply_filters( 'edd_auto_register_error_message', __( 'You must login to complete your purchase', 'edd-auto-register' ) ) );
+				edd_set_error( 'edd_auto_register_error_must_login', apply_filters( 'edd_auto_register_error_must_login', __( 'You must login to complete your purchase', 'edd-auto-register' ) ) );
 			}
 			else {
 				edd_unset_error( 'edd_auto_register_error_must_login' );

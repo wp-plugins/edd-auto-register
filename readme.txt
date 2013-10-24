@@ -1,10 +1,10 @@
 === EDD Auto Register ===
 Contributors: sumobi
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EFUPMPEZPGW7L
-Tags: easy digital downloads, digital downloads, e-downloads, edd, sumobi, purchase, auto, register, e-commerce
+Tags: easy digital downloads, digital downloads, e-downloads, edd, sumobi, purchase, auto, register, registration, e-commerce
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,62 @@ Shop Front was designed to be simple, responsive and lightweight. It has only th
 
 OR you can just install it with WordPress by going to Plugins >> Add New >> and type this plugin's name
 
+
+== Frequently Asked Questions ==
+
+= How can I modify some of the key aspects of the plugin? =
+
+There are filters available to modify the behaviour of the plugin, see the list below:
+
+// default role when customer is registered
+edd_auto_register_role
+
+// Email filters
+edd_auto_register_email_subject
+edd_auto_register_headers
+edd_auto_register_send_email
+edd_auto_register_email_body
+
+// Error message filters
+edd_auto_register_error_email_exists
+edd_auto_register_error_must_login
+
+// login form
+edd_auto_register_login_form
+
+= Can you provide a filter example of how to change the email's subject? =
+
+Add the following to your child theme's functions.php
+
+    function my_child_theme_edd_auto_register_email_subject( $subject ) {
+
+        // enter your new subject below
+	    $subject = 'Here are your new login details';
+
+	    return $subject;
+
+    }
+    add_filter( 'edd_auto_register_email_subject', 'my_child_theme_edd_auto_register_email_subject' );
+
+
+= Can you provide a filter example of how to change the email's body? =
+
+	function my_child_theme_edd_auto_register_email_body( $default_email_body, $first_name, $username, $password ) {
+
+		// Modify accordingly
+		$default_email_body = __( "Dear", "edd-auto-register" ) . ' ' . $first_name . ",\n\n";
+		$default_email_body .= __( "Below are your login details:", "edd-auto-register" ) . "\n\n";
+		$default_email_body .= __( "Your Username:", "edd-auto-register" ) . ' ' . $username . "\n\n";
+		$default_email_body .= __( "Your Password:", "edd-auto-register" ) . ' ' . $password . "\n\n";
+		$default_email_body .= get_bloginfo( 'name' ) . "\n\n";
+		$default_email_body .= site_url();
+
+		return $default_email_body;
+
+	}
+	add_filter( 'edd_auto_register_email_body', 'my_child_theme_edd_auto_register_email_body', 10, 4 );
+
+
 == Screenshots ==
 
 1. Coming soon
@@ -54,6 +110,9 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed filter names for error messages
 
 = 1.0 =
 * Initial release

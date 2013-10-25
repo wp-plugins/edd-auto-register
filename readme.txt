@@ -20,6 +20,8 @@ The customer's email address is used as the WordPress username (required by EDD 
 
 There are filters available for developer's to disable the email, modify the email subject line, email body, error messages, default user level etc. See the FAQ tab.
 
+If EDD's "Disable Guest Checkout" is enabled, the plugin loads it's own error message that makes more sense to the plugin. Also, if Edd's "Show Register / Login Form?" is enabled, the plugin will load it's own simple version of the login form.
+
 **More add-ons for Easy Digital Downloads**
 
 You can find more add-ons (both free and commercial) from [Easy Digital Downloads' website](https://easydigitaldownloads.com/extensions/?ref=166 "Easy Digital Downloads")
@@ -107,6 +109,12 @@ There may be an instance where you do not want the customer to be sent an email.
 
     }
     add_filter( 'edd_auto_register_send_email', 'my_child_theme_edd_auto_register_send_email' );
+
+== Screenshots ==
+
+1. The standard purchase form which will create a user account from the customer's Email Address
+1. The plugin's simple login form when both "Disable Guest Checkout" and "Show Register / Login Form?" are enabled
+1. The error message that shows when "Disable Guest Checkout" is enabled, but "Show Register / Login Form?" is not
 
 == Changelog ==
 

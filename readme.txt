@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: easy digital downloads, digital downloads, e-downloads, edd, sumobi, purchase, auto, register, registration, e-commerce
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,7 +116,18 @@ There may be an instance where you do not want the customer to be sent an email.
 1. The plugin's simple login form when both "Disable Guest Checkout" and "Show Register / Login Form?" are enabled
 1. The error message that shows when "Disable Guest Checkout" is enabled, but "Show Register / Login Form?" is not
 
+== Upgrade Notice ==
+
+= 1.0.2 =
+Fixed PHP notice and text strings not being properly translated in registration email
+
 == Changelog ==
+
+= 1.0.2 =
+* New: Adding custom translations is now easier by adding them to the wp-content/languages/edd-auto-register folder
+* New: Spanish and Catalan translations. Thanks to Joan Boluda!
+* Fix: Undefined index errors when form was submitted without email address
+* Fix: Text strings not being translated properly in registration email
 
 = 1.0.1 =
 * Fixed filter names for error messages

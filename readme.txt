@@ -3,8 +3,8 @@ Contributors: sumobi
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EFUPMPEZPGW7L
 Tags: easy digital downloads, digital downloads, e-downloads, edd, sumobi, purchase, auto, register, registration, e-commerce
 Requires at least: 3.3
-Tested up to: 3.6
-Stable tag: 1.0.2
+Tested up to: 3.9 alpha
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,11 +12,15 @@ Automatically creates a WP user account at checkout, based on customer's email a
 
 == Description ==
 
-This plugin requires [Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads"). 
+This plugin requires [Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads") v1.9 or greater. 
+
+[View the live demo](http://edd-auto-register.sumobithemes.com/downloads/test-download/ "Live Demo")
+
+[Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads")
 
 Once activated, EDD Auto Register will create a WordPress user account for your customer at checkout, without the need for the customer to enter any additional information. This eliminates the need for the default EDD registration form, and drastically reduces the time it takes your customers to complete their purchase.
 
-The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials (uses the same email template as the purchase confirmation). The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
+The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials. The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
 
 There are filters available for developer's to disable the email, modify the email subject line, email body, error messages, default user level etc. See the FAQ tab.
 
@@ -46,6 +50,7 @@ Shop Front was designed to be simple, responsive and lightweight. It has only th
 1. Upload to your site
 1. Navigate to `wp-admin/plugins.php` on your site (your WP Admin plugin page)
 1. Activate this plugin
+1. That's it! user accounts will automatically be created for your customers when they purchase your product for the first time and their login details will be emailed to them
 
 OR you can just install it with WordPress by going to Plugins >> Add New >> and type this plugin's name
 
@@ -56,12 +61,10 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 
 There are filters available to modify the behaviour of the plugin, see the list below:
 
-1. edd_auto_register_role
 1. edd_auto_register_email_subject
 1. edd_auto_register_headers
-1. edd_auto_register_send_email
+1. edd_auto_register_insert_user_args
 1. edd_auto_register_email_body
-1. edd_auto_register_error_email_exists
 1. edd_auto_register_error_must_login
 1. edd_auto_register_login_form
 
@@ -91,8 +94,7 @@ Add the following to your child theme's functions.php
 		$default_email_body .= __( "Below are your login details:", "edd-auto-register" ) . "\n\n";
 		$default_email_body .= __( "Your Username:", "edd-auto-register" ) . ' ' . $username . "\n\n";
 		$default_email_body .= __( "Your Password:", "edd-auto-register" ) . ' ' . $password . "\n\n";
-		$default_email_body .= get_bloginfo( 'name' ) . "\n\n";
-		$default_email_body .= site_url();
+		$default_email_body .= __( "Login:", "edd-auto-register" ) . ' ' . wp_login_url() . "\r\n";
 
 		return $default_email_body;
 
@@ -101,14 +103,7 @@ Add the following to your child theme's functions.php
 
 = How can I disable the email from sending to the customer? =
 
-There may be an instance where you do not want the customer to be sent an email. Add the following to your child theme's functions.php
-
-    function my_child_theme_edd_auto_register_send_email() {
-
-	    return false;
-
-    }
-    add_filter( 'edd_auto_register_send_email', 'my_child_theme_edd_auto_register_send_email' );
+There's an option under downloads &rarr; settings &rarr; extensions
 
 == Screenshots ==
 
@@ -118,10 +113,21 @@ There may be an instance where you do not want the customer to be sent an email.
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-Fixed PHP notice and text strings not being properly translated in registration email
+= 1.1 =
+Requires EDD 1.9 or greater. Will not work with older versions. User account creation now closely mimics that of EDD meaning a user account will be created no matter what payment gateway is used.
 
 == Changelog ==
+
+= 1.1 =
+* New: User account creation now closely mimics that of EDD core meaning a user account will be created no matter what payment gateway is used
+* New: "Lost Password?" link added to "login to purchase" form
+* New: Setting to disable the admin notification
+* New: Setting to disable the user notification
+* New: edd_auto_register_insert_user_args filter. This can be used to do things such as modify the default role of the user when they are created
+* Tweak: If a user who previously had an account returns to make a purchase it will no longer display "Email Address already in use". Instead it will be treated as a guest purchase
+* Tweak: Email sent to user now includes login URL
+* Tweak: Major code overhaul
+* Tweak: New user email no longer uses the default EDD receipt template so it's not styled like a receipt if you have a custom template.
 
 = 1.0.2 =
 * New: Adding custom translations is now easier by adding them to the wp-content/languages/edd-auto-register folder

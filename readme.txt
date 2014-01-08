@@ -12,17 +12,13 @@ Automatically creates a WP user account at checkout, based on customer's email a
 
 == Description ==
 
-This plugin requires [Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads") v1.9 or greater. 
+This plugin now requires [Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads") v1.9 or greater. 
 
 [View the live demo](http://edd-auto-register.sumobithemes.com/downloads/test-download/ "Live Demo")
 
-[Easy Digital Downloads](http://wordpress.org/extend/plugins/easy-digital-downloads/ "Easy Digital Downloads")
-
 Once activated, EDD Auto Register will create a WordPress user account for your customer at checkout, without the need for the customer to enter any additional information. This eliminates the need for the default EDD registration form, and drastically reduces the time it takes your customers to complete their purchase.
 
-The customer's email address is used as the WordPress username (required by EDD to send the purchase receipt to) and a random password is automatically created. When the purchase is completed, an email is sent to the customer containing their login credentials. The customer is also auto-logged into your website, just like the standard behaviour of the EDD registration form.
-
-There are filters available for developer's to disable the email, modify the email subject line, email body, error messages, default user level etc. See the FAQ tab.
+There are various filters available for developers, see the FAQ tab for more information.
 
 If EDD's "Disable Guest Checkout" is enabled, the plugin loads it's own error message that makes more sense to the plugin. Also, if Edd's "Show Register / Login Form?" is enabled, the plugin will load it's own simple version of the login form.
 
